@@ -5,10 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Ramsey\Uuid\Uuid;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class ApiToken extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, LogsActivity;
+
+    protected static $logFillable = true;
 
     protected $dates = [
         'deleted_at',

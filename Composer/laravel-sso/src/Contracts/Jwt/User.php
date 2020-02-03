@@ -2,11 +2,12 @@
 
 namespace Remp\LaravelSso\Contracts\Jwt;
 
+use Illuminate\Database\Eloquent\Model;
 use Remp\LaravelSso\Contracts\SsoException;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Support\Arrayable;
 
-class User implements Authenticatable, Arrayable
+class User extends Model implements Authenticatable, Arrayable
 {
     public $id;
 
@@ -91,5 +92,10 @@ class User implements Authenticatable, Arrayable
             'email' => $this->email,
             'scopes' => $this->scopes,
         ];
+    }
+
+    public function getKey()
+    {
+        return $this->getAuthIdentifier();
     }
 }
