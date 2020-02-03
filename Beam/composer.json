@@ -28,8 +28,8 @@
         "google/apiclient": "^2.0",
         "kouz/laravel-airbrake": "^0.4",
         "laracasts/flash": " ^3.0",
-        "laravel/framework": "5.7.*",
-        "laravelcollective/html": "5.7.*",
+        "laravel/framework": "5.8.*",
+        "laravelcollective/html": "5.8.*",
         "league/uri": "^5.0",
         "madewithlove/illuminate-psr-cache-bridge": "^1.0",
         "marc-mabe/php-enum": "^3.0",
@@ -46,7 +46,7 @@
         "snowplow/referer-parser": "dev-master",
         "tightenco/ziggy": "^0.7.1",
         "yadakhov/insert-on-duplicate-key": "^1.2",
-        "yajra/laravel-datatables-oracle": "^8.0"
+        "yajra/laravel-datatables-oracle": "^9.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.3",
