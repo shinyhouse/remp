@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Psy\Util\Json;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\Redis;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Campaign extends Model
 {
-    use PivotEventTrait;
+    use PivotEventTrait, LogsActivity;
 
     const ACTIVE_CAMPAIGN_IDS = 'active_campaign_ids';
     const CAMPAIGN_TAG = 'campaign';
@@ -25,6 +26,8 @@ class Campaign extends Model
     const URL_FILTER_EVERYWHERE = 'everywhere';
     const URL_FILTER_ONLY_AT = 'only_at';
     const URL_FILTER_EXCEPT_AT = 'except_at';
+
+    protected static $logFillable = true;
 
     protected $fillable = [
         'name',
@@ -252,7 +255,7 @@ class Campaign extends Model
             ->pluck('campaign_id')
             ->unique()
             ->toArray();
-        
+
         Redis::set(self::ACTIVE_CAMPAIGN_IDS, Json::encode(array_values($activeCampaignIds)));
 
         return collect($activeCampaignIds);
