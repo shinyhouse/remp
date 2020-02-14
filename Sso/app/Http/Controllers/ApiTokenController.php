@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use App\ApiToken;
 use App\Http\Requests\ApiTokenRequest;
 use App\Http\Resources\ApiTokenResource;
+use App\User;
 use Yajra\DataTables\DataTables;
 
 class ApiTokenController extends Controller
 {
     public function index()
     {
+//        $this->authorize('test', ApiToken::class);
+//        dd(auth()->user());
+//        auth()->user()->assignRole('testing-role-2');
+        $user = User::find(1);
+//        dd(auth()->user(),$user->assignRole('testing-role-2'));
+        /*$user->assignRole('testing-role-2');
+        $this->authorizeForUser($user,'testing-permission-3');*/
+        dd(auth()->user()->can('testing-permission-2'), User::find(1), $user->can('testing-permission-2'));
         return response()->format([
             'html' => view('api_tokens.index'),
             'json' => ApiTokenResource::collection(ApiToken::paginate()),

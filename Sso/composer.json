@@ -50,6 +50,7 @@
         "remp/laravel-sso": "@dev",
         "remp/laravel-widgets": "*",
         "spatie/laravel-activitylog": "^3.9",
+        "spatie/laravel-permission": "^3.6",
         "tymon/jwt-auth": "^1.0",
         "yajra/laravel-datatables-oracle": "^9.0"
     },

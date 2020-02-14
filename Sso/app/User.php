@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
@@ -23,6 +24,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  */
 class User extends Authenticatable implements JWTSubject
 {
+    use HasRoles;
+
     const PROVIDER_GOOGLE = 'google';
 
     const USER_SUBJECT_SESSION_KEY = 'user_token';
@@ -30,6 +33,9 @@ class User extends Authenticatable implements JWTSubject
     const USER_LAST_LOGOUT_KEY = 'user_logout';
 
     public $latestProvider;
+
+    //required for spatie/laravel-permissions
+    public $guard_name = 'jwtx';
 
     /**
      * The attributes that are mass assignable.

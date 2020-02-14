@@ -2,13 +2,17 @@
 
 namespace Remp\LaravelSso\Contracts\Jwt;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as BaseUser;
+//use Illuminate\Database\Eloquent\Model;
 use Remp\LaravelSso\Contracts\SsoException;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Support\Arrayable;
+use Spatie\Permission\Traits\HasRoles;
 
-class User extends Model implements Authenticatable, Arrayable
+class User extends BaseUser implements Authenticatable, Arrayable
 {
+    use HasRoles;
+
     public $id;
 
     public $name;
@@ -16,6 +20,9 @@ class User extends Model implements Authenticatable, Arrayable
     public $email;
 
     public $scopes;
+
+    //required for spatie/laravel-permissions
+    public $guard_name = 'jwtx';
 
     /**
      * Get the name of the unique identifier for the user.
